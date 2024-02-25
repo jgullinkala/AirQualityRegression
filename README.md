@@ -6,3 +6,62 @@ Install the application by running requirements.txt:
 ```
 pip install -r requirements.txt
 ```
+
+## Project Description
+AirQuality Italy UCI dataset is a multivariate time-series dataset that reports the hourly concentrations of air pollutants in an Italian city. The dataset contains 9358 instances and 15 attributes. The dataset is available at the UCI Machine Learning Repository
+
+The dataset contains the following attributes:
+
+1. Date: Date (DD/MM/YYYY)
+2. Time: Time (HH.MM.SS)
+3. CO(GT): True hourly averaged concentration CO in mg/m^3 (reference analyzer)
+4. PT08.S1(CO): (tin oxide) hourly averaged sensor response (nominally CO targeted)
+5. NMHC(GT): True hourly averaged overall Non Metanic HydroCarbons concentration in microg/m^3 (reference analyzer)
+6. C6H6(GT): True hourly averaged Benzene concentration in microg/m^3 (reference analyzer)
+7. PT08.S2(NMHC): (titania) hourly averaged sensor response (nominally NMHC targeted)
+8. NOx(GT): True hourly averaged NOx concentration in ppb (reference analyzer)
+9. PT08.S3(NOx): (tungsten oxide) hourly averaged sensor response (nominally NOx targeted)
+10. NO2(GT): True hourly averaged NO2 concentration in microg/m^3 (reference analyzer)
+11. PT08.S4(NO2): (tungsten oxide) hourly averaged sensor response (nominally NO2 targeted)
+12. PT08.S5(O3): (indium oxide) hourly averaged sensor response (nominally O3 targeted)
+13. T: Temperature in °C
+14. RH: Relative Humidity (%)
+15. AH: Absolute Humidity
+
+The dataset contains missing values and the target variable is CO(GT). The dataset is used to predict the hourly concentration of CO in mg/m^3. The dataset is used to build a regression model to predict the hourly concentration of CO in mg/m^3.
+
+## The code covers the following steps:
+
+1. Reading the dataset
+```python
+import pandas as pd
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00360/AirQualityUCI.csv'
+df = pd.read_csv(url)
+2. Cleaning the data
+```python
+df = df.replace(-200, np.nan)
+df = df.fillna(df.mean())
+```
+3. Exploratory Data Analysis
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+plt.figure(figsize=(10, 6))
+sns.heatmap(df.corr(), annot=True, cmap='viridis')
+plt.show()
+```
+4. Feature Selection (PCA)
+5. Model Building
+7. Model Evaluation
+
+## The code is written in Python and uses the following libraries:
+
+1. pandas
+2. numpy
+3. matplotlib
+4. seaborn
+5. sklearn
+
+The dataset is available at the UCI Machine Learning Repository. The dataset is available at the following URL: https://archive.ics.uci.edu/ml/datasets/Air+Quality
+The code is available at the following URL:
+
