@@ -35,8 +35,8 @@ The dataset contains missing values and the target variable is Date. It is choos
 1. Reading the dataset
 ```python
 import pandas as pd
-url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00360/AirQualityUCI.csv'
-df = pd.read_csv(url)
+air_quality_df = pd.read_csv('https://archive.ics.uci.edu/static/public/360/data.csv')
+```
 2. Cleaning the data
 ```python
 df = df.replace(-200, np.nan)
@@ -51,8 +51,31 @@ sns.heatmap(df.corr(), annot=True, cmap='viridis')
 plt.show()
 ```
 4. Feature Selection (PCA)
+```python
+X = data_features.drop(columns=['Date', 'Time','Peak_hours'])
+scaler = StandardScaler() 
+X_scaled = scaler.fit_transform(X)
+pca = PCA()  
+X_pca = pca.fit(X_scaled)
+explained_variance_ratio = pca.explained_variance_ratio_
+explained_variance_ratio.cumsum()
+```
 5. Model Building
-7. Model Evaluation
+```python
+X = data_features.drop('Date', axis=1)
+y = data_features['Date']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+```
+6. Model Evaluation
+```python
+y_pred = model.predict(X_test_pca)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+print('RMSE of Linear Regression with PCA:', rmse)
+r2 = r2_score(y_test, y_pred)
+print('R-squared of Linear Regression with PCA:', r2)
+```
 
 ## The code is written in Python and uses the following libraries:
 
@@ -62,6 +85,9 @@ plt.show()
 4. seaborn
 5. sklearn
 
-The dataset is available at the UCI Machine Learning Repository. The dataset is available at the following URL: https://archive.ics.uci.edu/ml/datasets/Air+Quality
-The code is available at the following URL:
+## The dataset is available at the UCI Machine Learning Repository. The dataset is available at the following URL:
+https://archive.ics.uci.edu/ml/datasets/Air+Quality
+
+## The code is available at the following URL:
+https://github.com/jgullinkala/AirQualityRegression
 
