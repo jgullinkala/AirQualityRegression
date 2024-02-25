@@ -28,7 +28,7 @@ The dataset contains the following attributes:
 14. RH: Relative Humidity (%)
 15. AH: Absolute Humidity
 
-The dataset contains missing values and the target variable is CO(GT). The dataset is used to predict the hourly concentration of CO in mg/m^3. The dataset is used to build a regression model to predict the hourly concentration of CO in mg/m^3.
+The dataset contains missing values and the target variable is Date. It is choosen as target variable because it is a time-seires dataset and we are interested in predicting the concentration of other pollutants based on the date.
 
 ## The code covers the following steps:
 
