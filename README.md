@@ -52,6 +52,8 @@ plt.show()
 ```
 4. Feature Selection (PCA)
 ```python
+from sklearn.decomposition import PCA  
+from sklearn.preprocessing import StandardScaler
 X = data_features.drop(columns=['Date', 'Time','Peak_hours'])
 scaler = StandardScaler() 
 X_scaled = scaler.fit_transform(X)
@@ -62,6 +64,7 @@ explained_variance_ratio.cumsum()
 ```
 5. Model Building
 ```python
+from sklearn.linear_model import LinearRegression
 X = data_features.drop('Date', axis=1)
 y = data_features['Date']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
@@ -70,6 +73,7 @@ model.fit(X_train, y_train)
 ```
 6. Model Evaluation
 ```python
+from sklearn.metrics import mean_squared_error, r2_score
 y_pred = model.predict(X_test_pca)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 print('RMSE of Linear Regression with PCA:', rmse)
