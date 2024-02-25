@@ -39,15 +39,15 @@ air_quality_df = pd.read_csv('https://archive.ics.uci.edu/static/public/360/data
 ```
 2. Cleaning the data
 ```python
-df = df.replace(-200, np.nan)
-df = df.fillna(df.mean())
+air_quality_df = air_quality_df.replace(-200, np.nan)
+air_quality_df = air_quality_df.fillna(df.mean())
 ```
 3. Exploratory Data Analysis
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.figure(figsize=(10, 6))
-sns.heatmap(df.corr(), annot=True, cmap='viridis')
+sns.heatmap(air_quality_df.corr(), annot=True, cmap='viridis')
 plt.show()
 ```
 4. Feature Selection (PCA)
