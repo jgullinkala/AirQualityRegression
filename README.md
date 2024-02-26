@@ -54,10 +54,9 @@ plt.show()
 ```python
 from sklearn.decomposition import PCA  
 from sklearn.preprocessing import StandardScaler
-X = data_features.drop(columns=['Date', 'Time','Peak_hours'])
 scaler = StandardScaler() 
 X_scaled = scaler.fit_transform(X)
-pca = PCA()  
+pca = PCA(n_components=4)  
 X_pca = pca.fit(X_scaled)
 explained_variance_ratio = pca.explained_variance_ratio_
 explained_variance_ratio.cumsum()
@@ -65,8 +64,8 @@ explained_variance_ratio.cumsum()
 5. Model Building
 ```python
 from sklearn.linear_model import LinearRegression
-X = data_features.drop('Date', axis=1)
-y = data_features['Date']
+X = data_features.drop('CO(GT)', axis=1)
+y = data_features['CO(GT)']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 model = LinearRegression()
 model.fit(X_train, y_train)
